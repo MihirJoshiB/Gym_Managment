@@ -1,0 +1,19 @@
+{
+  "name": "gym_managment",
+  "version": "1.0.0",
+  "description": "Backend API",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mihirprajapati-05/Gym-Management-System.git"
+  },
+  "author": "Mihir joshi & Prajapati",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mihirprajapati-05/Gym-Management-System/issues"
+  },
+  "homepage": "https://github.com/mihirprajapati-05/Gym-Management-System#readme"
+}
