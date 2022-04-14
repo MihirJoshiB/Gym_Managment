@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 
-mongoose.connect("mongodb://localhost:27017/gym", {
+mongoose.connect("mongodb://localhost:27017/gym_project", {
     
 }).then(() => {
     console.log("Done");
