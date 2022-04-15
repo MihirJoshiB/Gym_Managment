@@ -1,10 +1,13 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const bootcamp = require('./routes/Bootecamps');
+const package = require('./routes/package_route');
+const batch = require('./routes/batch_route');
 const morgan = require('morgan');
 const connectDB = require('./config/db');
 const errorhandler = require('./middleware/error');
 const { use } = require('./routes/Bootecamps');
+
 
 dotenv.config({ path: './config/config.env'});
 
@@ -20,6 +23,8 @@ if(process.env.NODE_ENV ===  'development')
 
 
 app.use('/equipment',bootcamp);
+app.use('/package',package);
+app.use('/batch',batch);
 app.use(errorhandler);
 
 const PORT = process.env.PORT || 5000;
