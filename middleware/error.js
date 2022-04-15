@@ -3,6 +3,8 @@ const ErrorResponse = require("../util/errorResponse");
 const errorhandler = (err,req,res,next) => {
     let error = { ...err }
     error.message = err.message;
+
+    console.log(err);
     console.log(err.stack.red);
     if(err.name == 'CastError')
     {
@@ -15,6 +17,12 @@ const errorhandler = (err,req,res,next) => {
     {
         const message = 'Dupicate field value entered';
         error = new ErrorResponse(message,400);
+    }
+
+    //validation error
+    if(err.name === 'ValidationError')
+    {
+        const message = Object.values
     }
 
     res.status(err.statusCode  || 500).json({
