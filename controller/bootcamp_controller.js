@@ -1,5 +1,6 @@
 const equip = require('../model/equipment');
-
+const ErrorResponse = require('../util/errorResponse');
+const Errorhandler = require('../util/errorResponse');
 // get all bootcamps
 //route GET/api/v1/bootcamps
 //access public
@@ -9,9 +10,9 @@ exports.getBootcamps = async (req , res , next) => {
     try {
         const viewallequip = await equip.find();
 
-        res.status(200).json({ success: true,data: viewallequip});
+        res.status(200).json({ success: true,count: viewallequip.length,data: viewallequip});
     } catch (err) {
-        res.status(400).json({ success: false }); 
+        next(err);
     }
 }
 
@@ -24,12 +25,13 @@ exports.getBootcamp = async (req , res , next) => {
        const singalview = await equip.findById(req.params.id);
 
        if(!singalview){
-        return res.status(400).json({ success: false }); 
+        return next(new ErrorResponse(`Equipment not found with id ${req.params.id}`,404));   
        }
 
        res.status(200).json({ success: true,data: singalview});
    } catch (err) {
-    res.status(400).json({ success: false }); 
+    // res.status(400).json({ success: false });
+   next(err);
    }
     // res.status(200).json({ success:true , msg: `Show bootcamap ${req.params.id}`}); 
 }
@@ -50,7 +52,7 @@ exports.createBootcamps = async (req , res , next) => {
    });
         
     } catch (err) {
-        res.status(400).json({ success: false }); 
+        next(err);
     }
    
 };
@@ -60,24 +62,29 @@ exports.createBootcamps = async (req , res , next) => {
 //route PUT/api/v1/bootcamp/:id
 //access private
 exports.updateBootcamps = async (req , res , next) => {
-    
-    const updateuip = await equip.findByIdAndUpdate(req.params.id,req.body,{
+    try{
+    const updateuip = await equip.findByIdAndUpdate(req.params.id, req.body , {
         new: true,
-        runValidators:true
+       
     });
 
     if(!updateuip)
     {
-        return res.status(400).json({ success: false }); 
+        return next(new ErrorResponse(`Equipment not found with id ${req.params.id}`,404));   
     }
     res.status(200).json({ success: true,data: updateuip});
+}
+    catch (err)
+    {
+        next(err);
+    }
     // try {
         
     // } catch (err) {
         
-    // }
+    // }  
     
-}
+};
 
 
 // delete bootcamps
@@ -85,9 +92,14 @@ exports.updateBootcamps = async (req , res , next) => {
 //access private
 exports.deleteBootcamps = async (req , res , next) => {
     try {
-        
+        const deleteequip = await equip.findByIdAndDelete(req.params.id);
+        if(!deleteequip)
+        {
+            return next(new ErrorResponse(`Equipment not found with id ${req.params.id}`,404));   
+        }
+        res.status(200).json({ success: true,data: {}});
+
     } catch (err) {
-        
+        next(err);
     }
-    res.status(200).json({ success:true , msg: `Delete bootcamap ${req.params.id}`}); 
-}
+};

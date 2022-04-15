@@ -3,6 +3,8 @@ const dotenv = require('dotenv');
 const bootcamp = require('./routes/Bootecamps');
 const morgan = require('morgan');
 const connectDB = require('./config/db');
+const errorhandler = require('./middleware/error');
+const { use } = require('./routes/Bootecamps');
 
 dotenv.config({ path: './config/config.env'});
 
@@ -17,7 +19,8 @@ if(process.env.NODE_ENV ===  'development')
 }
 
 
-app.use('/equipment',bootcamp)
+app.use('/equipment',bootcamp);
+app.use(errorhandler);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`));
@@ -25,6 +28,6 @@ app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on 
 //handle unhandle promise rejections
 process.on('unhandledRejection',(err,promise) => {
     console.log(`Error: ${err.message}`);
-    server.close(() => process.exit(1));
+   // server.close(() => process.exit(1));
 });
 
