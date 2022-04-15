@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mihirprajapati-05/Gym-Management-System.git"
+    "url": "git+https://github.com/MihirJoshiB/Gym_Managment.git"
   },
   "author": "Mihir joshi & Prajapati",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mihirprajapati-05/Gym-Management-System/issues"
+    "url": "https://github.com/MihirJoshiB/Gym_Managment/issues"
   },
-  "homepage": "https://github.com/mihirprajapati-05/Gym-Management-System#readme",
+  "homepage": "https://github.com/MihirJoshiB/Gym_Managment-System#readme",
   "dependencies": {
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
