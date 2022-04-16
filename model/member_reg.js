@@ -2,12 +2,12 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-const trainerSchema = new mongoose.Schema({
-  Trainer_Name: {
+const memberSchema = new mongoose.Schema({
+  member_Name: {
     type: String,
     required: true,
   },
-  Trainer_Image: {
+  member_Image: {
     type: String,
     required: true,
   },
@@ -52,14 +52,6 @@ const trainerSchema = new mongoose.Schema({
     required: true,
   },
 
-  Speciality: {
-    type: String,
-    required: true,
-  },
-  Experience: {
-    type: Number,
-    required: true,
-  },
   createAt: {
     type: Date,
     default: Date.now,
@@ -67,12 +59,12 @@ const trainerSchema = new mongoose.Schema({
 
   role:{
     type:String,
-    default:"T",
+    default:"M",
   } 
 });
 
 //encrypt password
-trainerSchema.pre("save",async function (next){
+memberSchema.pre("save",async function (next){
     console.log("save updating");
     if(!this.isModified('password')){ next();}
     const salt = await bcrypt.genSalt();
@@ -80,15 +72,15 @@ trainerSchema.pre("save",async function (next){
 });
 
 //sign JWT and return
-trainerSchema.methods.getSignedJwtToken = function(){
+memberSchema.methods.getSignedJwtToken = function(){
   return jwt.sign({ id: this._id},process.env.JWT_SERECT,{
   expiresIn: process.env.JWT_EXPIRE
   })
 }
 
 //match password to hash password in database
-trainerSchema.methods.matchPassword = async function(enterpassword)
+memberSchema.methods.matchPassword = async function(enterpassword)
 {
   return await bcrypt.compare(enterpassword,this.password);
 }
-module.exports = mongoose.model('Trainer', trainerSchema);
+module.exports = mongoose.model('Member', memberSchema);

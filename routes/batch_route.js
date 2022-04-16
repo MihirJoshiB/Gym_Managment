@@ -7,6 +7,7 @@ const{ getBatches,
     deletebatch} = require('../controller/batch_controller');
 
 const router = express.Router();
+const { protect } = require('../middleware/auth');
 
 router.route('/')
     .post(addbatch)

@@ -15,14 +15,33 @@ exports.gettrainers = asyncHandler( async (req , res , next) => {
 
 
 exports.gettrainer = asyncHandler( async (req , res , next) => {
+
+    // const{Trainer_Name,Trainer_Image,Gender,Address,phone,email,password,DOB,Height,Wight,Speciality,Experience} = req.body;
    
-       const singatrainer = await trainer.findById(req.params.id);
+    // const user = await trainer.create({
+    //     Trainer_Name,Trainer_Image,Gender,Address,phone,email,password,DOB,Height,Wight,Speciality,Experience
+    // })
+    // //    const singatrainer = await trainer.findById(req.params.id);
 
-       if(!singatrainer){
-        return next(new ErrorResponse(`trainer not found with id ${req.params.id}`,404));   
-       }
+    //      //token
+    //      const token = user.getSignedJwtToken();
 
-       res.status(200).json({ success: true,data: singatrainer});
+    //      res.status(201).json({
+    //          success:true,
+    //          token
+            
+    //      }); 
+    //    if(!singatrainer){
+    //     return next(new ErrorResponse(`trainer not found with id ${req.params.id}`,404));   
+    //    }
+
+    const viewtrainer = await trainer.findById(req.params.id);
+
+    if(!viewtrainer){
+     return next(new ErrorResponse(`trainer not found with batch id ${req.params.id}`,404));   
+    }
+
+    res.status(200).json({ success: true,data: viewtrainer});
    
   
 });
@@ -31,11 +50,14 @@ exports.gettrainer = asyncHandler( async (req , res , next) => {
 
 exports.addtrainer = asyncHandler( async (req , res , next) => {
     
+        
         const addtrainer = await trainer.create(req.body);
+
 
    res.status(201).json({
        success:true,
-       data: addtrainer
+       data:addtrainer
+      
    }); 
 });
 
