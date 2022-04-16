@@ -1,8 +1,13 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const fileupload = require('express-fileupload');
+//route files
 const bootcamp = require('./routes/Bootecamps');
 const package = require('./routes/package_route');
 const batch = require('./routes/batch_route');
+const trainer = require('./routes/trainer_route');
+// const members = require('./routes/membership_route');
+
 const morgan = require('morgan');
 const connectDB = require('./config/db');
 const errorhandler = require('./middleware/error');
@@ -21,10 +26,15 @@ if(process.env.NODE_ENV ===  'development')
     app.use(morgan('dev'));
 }
 
+//file uplaod
+app.use(fileupload());
+
 
 app.use('/equipment',bootcamp);
 app.use('/package',package);
 app.use('/batch',batch);
+app.use('/trainer',trainer);
+// app.use('/membership',members);
 app.use(errorhandler);
 
 const PORT = process.env.PORT || 5000;
