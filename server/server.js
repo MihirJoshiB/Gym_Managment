@@ -1,4 +1,5 @@
 const express = require('express');
+var cors = require('cors');
 const dotenv = require('dotenv');
 const fileupload = require('express-fileupload');
 const cookiparser = require('cookie-parser');
