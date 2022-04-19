@@ -1,3 +1,4 @@
+
 const express = require('express');
 var cors = require('cors');
 const dotenv = require('dotenv');
@@ -5,7 +6,7 @@ const fileupload = require('express-fileupload');
 const cookiparser = require('cookie-parser');
 //route files
 const bootcamp = require('./routes/Bootecamps');
-const package = require('./routes/package_route');
+const pack = require('./routes/package_route');
 const batch = require('./routes/batch_route');
  const trainer = require('./routes/trainer_route');
 const auth = require('./routes/auth');
@@ -34,10 +35,10 @@ if(process.env.NODE_ENV ===  'development')
 
 //file uplaod
 app.use(fileupload());
-
+app.use(cors())
 
 app.use('/equipment',bootcamp);
-app.use('/package',package);
+app.use('/package',pack);
 app.use('/batch',batch);
  app.use('/trainer',trainer);
 app.use('/auth',auth);

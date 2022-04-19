@@ -33,7 +33,7 @@ exports.getBootcamp = asyncHandler( async (req , res , next) => {
 
 
 // create bootcamps
-//route POST/api/v1/bootcamps/:id
+//route POST/api/v1/bootcamps/
 //access private
 exports.createBootcamps = asyncHandler( async (req , res , next) => {
     // console.log(req.body);

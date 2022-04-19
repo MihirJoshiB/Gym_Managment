@@ -1,22 +1,22 @@
 const mongoose = require('mongoose');
 
 const equipmentschema = new mongoose.Schema({
-    ename : {
+    eqname : {
         type:String,
         required: [true,'Please add equipment name']
         
     },
-    decription : {
+    eqdescription : {
         type:String,
         required:[true,'Please add description']
        
     },
-    category : {
+    eqcategory : {
         type:String,
         required:[true,'Please add category']
         
     },
-    qty : {
+    eqquantity : {
         type:Number,
         required:[true,'Please add qty']
        

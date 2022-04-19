@@ -8,11 +8,34 @@ const { options } = require('../routes/auth');
 //regiser of trainer
 exports.register = asyncHandler( async (req , res , next) => {
 
-    const{Trainer_Name,Trainer_Image,Gender,Address,phone,email,password,DOB,Height,Wight,Speciality,Experience} = req.body;
+    const{ trainername,
+        useremail,
+        trainerdob,
+        trainercontactno,
+        traineraddress,
+        trainergender,
+        trainerheight,
+        trainerweight,
+        // trainerrdate,
+        trainerexp,
+        trainerbatch,
+        trainerspeciality,
+        userpassword} = req.body;
    
     const user = await trainer.create({
-        Trainer_Name,Trainer_Image,Gender,Address,phone,email,password,DOB,Height,Wight,Speciality,Experience
-    })
+        trainername,
+            useremail,
+            trainerdob,
+            trainercontactno,
+            traineraddress,
+            trainergender,
+            trainerheight,
+            trainerweight,
+            // trainerrdate,
+            trainerexp,
+            trainerbatch,
+            trainerspeciality,
+            userpassword  })
 
     sendTokenResponse(user,200,res);
   

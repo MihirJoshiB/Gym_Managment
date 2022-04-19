@@ -3,68 +3,72 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const trainerSchema = new mongoose.Schema({
-  Trainer_Name: {
+  trainername: {
     type: String,
     required: true,
   },
-  Trainer_Image: {
+  traineremail: {
     type: String,
     required: true,
-  },
-  Gender: {
-    type: String,
-    required: true,
-  },
-  Address: {
-    type: String,
-    required: true,
-  },
-  phone: {
-    type: Number,
-    required: true,
-    maxlength: [10, 'Add valid phone number'],
-    unique: true,
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
+    //unique: true,
     match: [
       /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
       'Please add valid email',
     ],
   },
-  password: {
+  // Trainer_Image: {
+  //   type: String,
+  //   required: true,
+  // },
+  
+  trainerdob: {
+    type: Date,
+    required: true,
+  },
+  trainercontactno: {
+    type: Number,
+    required: true,
+    maxlength: [10, 'Add valid phone number'],
+    //unique: true,
+  },
+  traineraddress: {
+    type: String,
+    required: true,
+  },
+  trainergender: {
+    type: String,
+    required: true,
+  },
+  
+  trainerheight: {
+    type: Number,
+    required: true,
+  },
+  trainerweight: {
+    type: Number,
+    required: true,
+  },
+  trainerrdate: {
+    type: Date,
+    default: Date.now,
+  },
+  trainerexp: {
+    type: Number,
+    required: true,
+  },
+  trainerbatch:{
+    type: String,
+    required:true
+  },
+  trainerspeciality: {
+    type: String,
+    required: true,
+  },
+  trainerpassword: {
     type: String,
     required: true,
     select: false,
   },
-  DOB: {
-    type: Date,
-    required: true,
-  },
-  Height: {
-    type: Number,
-    required: true,
-  },
-  Wight: {
-    type: Number,
-    required: true,
-  },
-
-  Speciality: {
-    type: String,
-    required: true,
-  },
-  Experience: {
-    type: Number,
-    required: true,
-  },
-  createAt: {
-    type: Date,
-    default: Date.now,
-  },
-
   role:{
     type:String,
     default:"T",
