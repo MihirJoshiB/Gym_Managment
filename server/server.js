@@ -4,6 +4,7 @@ var cors = require('cors');
 const dotenv = require('dotenv');
 const fileupload = require('express-fileupload');
 const cookiparser = require('cookie-parser');
+const bodyparser = require('body-parser');
 //route files
 const bootcamp = require('./routes/Bootecamps');
 const pack = require('./routes/package_route');
@@ -25,6 +26,7 @@ const app = express();
 
 //body parser
 app.use(express.json());
+app.use(bodyparser.json());
 //cookie parser
 app.use(cookiparser());
 

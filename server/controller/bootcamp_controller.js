@@ -9,6 +9,12 @@ exports.getBootcamps = asyncHandler( async (req , res , next) => {
     // res.status(200).json({ success: true , msg: 'show all bootcamps ', hello: req.hello});
     
         const viewallequip = await equip.find();
+    //   equip.find().then(data => {
+    //       res.json(data);
+    //   })
+    //   .catch(e => {
+    //       res.json({message: e});
+    //   })
 
         res.status(200).json({ success: true,count: viewallequip.length,data: viewallequip});
     
