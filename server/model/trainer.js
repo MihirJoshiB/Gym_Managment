@@ -7,7 +7,7 @@ const trainerSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  traineremail: {
+  email: {
     type: String,
     required: true,
     //unique: true,
@@ -64,7 +64,7 @@ const trainerSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  trainerpassword: {
+  password: {
     type: String,
     required: true,
     select: false,

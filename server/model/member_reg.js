@@ -7,10 +7,10 @@ const memberSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  member_Image: {
-    type: String,
-    required: true,
-  },
+  // member_Image: {
+  //   type: String,
+  //   required: true,
+  // },
   Gender: {
     type: String,
     required: true,
